@@ -5,6 +5,9 @@
 from django.db import models
 
 class Post(models.Model):
+    """
+    A post with the fields below.
+    """
     title = models.CharField(max_length=2000)
     description = models.CharField(max_length=20000)
     body = models.TextField(max_length=200000)
