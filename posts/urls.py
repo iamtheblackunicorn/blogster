@@ -7,6 +7,7 @@ from django.urls import path
 app_name = 'posts'
 urlpatterns = [
     path('', views.blog, name='blog'),
-    path('api', views.api, name='api'),
+    path('api/posts', views.api, name='api'),
     path('<str:title>', views.post, name='post'),
+    path('api/site', views.settings_api, name='site_api')
 ]

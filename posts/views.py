@@ -3,6 +3,7 @@
 # Licensed under the MIT license.
 
 from .models import Post
+from django.conf import settings
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -13,12 +14,14 @@ def blog(request):
     template with an iterator for context.
     """
     all_posts = Post.objects.all()
+    context = {
+        'posts':all_posts
+    }
+    context.update(settings.SITE_VARS)
     return render(
         request,
         'posts/blog.html',
-        {
-            'posts':all_posts
-        }
+        context
     )
 
 def post(request, title):
@@ -31,16 +34,25 @@ def post(request, title):
     post_body = post.body
     post_date = post.date
     post_description = post.description
+    context = {
+        'title':title,
+        'body':post_body,
+        'date':post_date,
+        'description':post_description
+    }
+    context.update(settings.SITE_VARS)
     return render(
         request,
         'posts/post.html',
-        {
-            'title':title,
-            'body':post_body,
-            'date':post_date,
-            'description':post_description
-        }
+        context
     )
+
+def settings_api(request):
+    """
+    We return a [JsonResponse]
+    of global site variables, if desired.
+    """
+    return JsonResponse(settings.SITE_VARS, safe=False)
 
 def api(request):
     """
