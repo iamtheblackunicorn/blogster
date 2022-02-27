@@ -1,5 +1,5 @@
 <p align="center">
- <img src="https://s3.envato.com/files/244747693/K-199-Eye-06341wf.jpg"/>
+ <img src="/banner/banner.png"/>
 </p>
 
 # BLOGSTER :pill: :fire:
